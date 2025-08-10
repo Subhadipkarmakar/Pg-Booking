@@ -821,3 +821,70 @@ if ('serviceWorker' in navigator) {
         // navigator.serviceWorker.register('/sw.js');
     });
 }
+
+// ===== WHATSAPP FLOATING BUTTON =====
+document.addEventListener('DOMContentLoaded', () => {
+    const whatsappFloat = document.getElementById('whatsapp-float');
+    const whatsappBtn = whatsappFloat.querySelector('.whatsapp-btn');
+    
+    // Show/hide WhatsApp button based on scroll position
+    let lastScrollTop = 0;
+    let isVisible = true;
+    
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Show button after scrolling down a bit
+        if (scrollTop > 300) {
+            if (!isVisible) {
+                whatsappFloat.style.transform = 'translateY(0)';
+                whatsappFloat.style.opacity = '1';
+                isVisible = true;
+            }
+        } else {
+            if (isVisible) {
+                whatsappFloat.style.transform = 'translateY(100px)';
+                whatsappFloat.style.opacity = '0';
+                isVisible = false;
+            }
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+    
+    // Add click tracking (optional - for analytics)
+    whatsappBtn.addEventListener('click', () => {
+        // You can add analytics tracking here
+        console.log('WhatsApp button clicked');
+        
+        // Optional: Add a small animation feedback
+        whatsappBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            whatsappBtn.style.transform = 'scale(1)';
+        }, 150);
+    });
+    
+    // Add hover sound effect (optional)
+    whatsappBtn.addEventListener('mouseenter', () => {
+        // You can add a subtle sound effect here if needed
+        whatsappBtn.style.transform = 'translateY(-3px) scale(1.05)';
+    });
+    
+    whatsappBtn.addEventListener('mouseleave', () => {
+        whatsappBtn.style.transform = 'translateY(0) scale(1)';
+    });
+    
+    // Initialize button state
+    whatsappFloat.style.transition = 'all 0.3s ease';
+    whatsappFloat.style.transform = 'translateY(100px)';
+    whatsappFloat.style.opacity = '0';
+    
+    // Show button after page load
+    setTimeout(() => {
+        if (window.pageYOffset > 300) {
+            whatsappFloat.style.transform = 'translateY(0)';
+            whatsappFloat.style.opacity = '1';
+            isVisible = true;
+        }
+    }, 1000);
+});

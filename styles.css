@@ -1552,3 +1552,132 @@ body {
         color: black !important;
     }
 }
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    animation: bounce 2s infinite;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    background: #25D366;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    color: white;
+    text-decoration: none;
+}
+
+.whatsapp-btn i {
+    font-size: 24px;
+    margin-right: 10px;
+    animation: pulse 1.5s infinite;
+}
+
+.whatsapp-text {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Bounce animation for attention */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Pulse animation for WhatsApp icon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive design for WhatsApp button */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .whatsapp-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .whatsapp-btn i {
+        font-size: 20px;
+        margin-right: 8px;
+    }
+    
+    .whatsapp-text {
+        display: none;
+    }
+    
+    .whatsapp-btn {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    .whatsapp-btn i {
+        margin: 0;
+    }
+}
+
+/* Dark mode support for WhatsApp button */
+[data-theme="dark"] .whatsapp-btn {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+}
+
+[data-theme="dark"] .whatsapp-btn:hover {
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+}
+
+/* Additional hover effects */
+.whatsapp-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.whatsapp-btn:hover::before {
+    left: 100%;
+}
